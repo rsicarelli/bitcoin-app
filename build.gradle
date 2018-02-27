@@ -5,6 +5,10 @@ buildscript {
     kotlinVersion = '1.2.21'
     supportLibraryVersion = '27.0.2'
     constraintLayoutVersion = "1.0.2"
+    retrofitVersion = '2.3.0'
+    okHttpVersion = '3.6.0'
+    rxJavaVersion = '2.1.7'
+    rxAndroidVersion = '2.0.1'
   }
 
   repositories {

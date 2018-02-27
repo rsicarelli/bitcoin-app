@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  tools:parentTag="android.support.constraint.ConstraintLayout">
+  android:layout_height="wrap_content">
   
   <TextView
     android:id="@+id/price"
@@ -22,7 +21,7 @@
     tools:text="10,623" />
   
   <TextView
-    android:id="@+id/currency"
+    android:id="@+id/bitcoinCurrency"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginLeft="4dp"
@@ -34,7 +33,7 @@
     app:layout_constraintStart_toEndOf="@+id/price" />
   
   <TextView
-    android:id="@+id/date"
+    android:id="@+id/bitcoinDate"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp"
@@ -50,4 +49,4 @@
     tools:text="02/24/2018"
     tools:visibility="visible" />
 
-</merge>
+</android.support.constraint.ConstraintLayout>

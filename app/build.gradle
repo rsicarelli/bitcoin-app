@@ -36,6 +36,14 @@ dependencies {
   implementation "com.android.support:design:$supportLibraryVersion"
   implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
+  implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+  implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
+  implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+  implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+  implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+  implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
   testImplementation 'junit:junit:4.12'
 }
 
