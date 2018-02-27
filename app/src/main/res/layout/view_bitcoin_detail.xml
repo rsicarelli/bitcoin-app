@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  tools:parentTag="android.support.constraint.ConstraintLayout">
+  
+  <TextView
+    android:id="@+id/price"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:fontFamily="sans-serif-condensed"
+    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="10,623" />
+  
+  <TextView
+    android:id="@+id/currency"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="4dp"
+    android:layout_marginStart="4dp"
+    android:fontFamily="sans-serif-condensed"
+    android:text="USD"
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+    app:layout_constraintBottom_toBottomOf="@+id/price"
+    app:layout_constraintStart_toEndOf="@+id/price" />
+  
+  <TextView
+    android:id="@+id/date"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginStart="8dp"
+    android:gravity="end"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="@+id/price"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/currency"
+    tools:text="02/24/2018"
+    tools:visibility="visible" />
+
+</merge>
