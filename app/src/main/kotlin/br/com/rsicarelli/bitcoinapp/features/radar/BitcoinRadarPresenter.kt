@@ -1,8 +1,9 @@
-package br.com.rsicarelli.bitcoinapp
+package br.com.rsicarelli.bitcoinapp.features.radar
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import br.com.rsicarelli.bitcoinapp.R.id.bitcoinDetailView
+import br.com.rsicarelli.bitcoinapp.R.id.recyclerView
 import br.com.rsicarelli.bitcoinapp.api.BitcoinApi
 import br.com.rsicarelli.bitcoinapp.data.Bitcoin
 import br.com.rsicarelli.bitcoinapp.data.Currency
@@ -13,12 +14,10 @@ import kotlinx.android.synthetic.main.activity_home.bitcoinDetailView
 import kotlinx.android.synthetic.main.activity_home.recyclerView
 import java.util.concurrent.TimeUnit
 
-class HomeActivity : AppCompatActivity() {
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_home)
-
+class BitcoinRadarPresenter(
+    private val view: BitcoinRadarContract.View
+) : BitcoinRadarContract.Presenter {
+  override fun onCreate(savedInstance: Bundle?) {
     val create = BitcoinApi.create()
 
     Observable.fromCallable<Any> {
@@ -33,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
                 currency = Currency.fromString(usd.code)
             )
           }.subscribe({
-            bitcoinDetailView.bind(it)
+            view.bindRealtimeData(it)
           }, {
             Log.e("memes", "memes")
           })
@@ -50,12 +49,18 @@ class HomeActivity : AppCompatActivity() {
         }
         .toList()
         .subscribe({
-          val bitcoinHistoryAdapter = BitcoinHistoryAdapter()
-          bitcoinHistoryAdapter.addUsers(it)
-          recyclerView.adapter = bitcoinHistoryAdapter
+          view.bindHistory(it)
           Log.d("memes", it.toString())
         }, {
           Log.e("memes", it.message)
         })
+  }
+
+  override fun onSaveInstanceState(outState: Bundle?) {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun onDestroy() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 }

@@ -1,9 +1,10 @@
-package br.com.rsicarelli.bitcoinapp
+package br.com.rsicarelli.bitcoinapp.features.radar
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
+import br.com.rsicarelli.bitcoinapp.R
 import br.com.rsicarelli.bitcoinapp.data.Bitcoin
 import kotlinx.android.synthetic.main.view_bitcoin_detail.view.bitcoinCurrency
 import kotlinx.android.synthetic.main.view_bitcoin_detail.view.bitcoinDate

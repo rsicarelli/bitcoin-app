@@ -5,7 +5,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:padding="8dp"
-  tools:context="br.com.rsicarelli.bitcoinapp.HomeActivity">
+  tools:context="br.com.rsicarelli.bitcoinapp.features.radar.BitcoinRadarActivity">
   
   <TextView
     android:id="@+id/currentPriceTitle"
@@ -15,7 +15,7 @@
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
   
-  <br.com.rsicarelli.bitcoinapp.BitcoinDetailView
+  <br.com.rsicarelli.bitcoinapp.features.radar.BitcoinDetailView
     android:id="@+id/bitcoinDetailView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

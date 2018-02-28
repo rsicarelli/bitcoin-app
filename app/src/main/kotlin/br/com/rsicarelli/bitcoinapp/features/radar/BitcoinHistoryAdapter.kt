@@ -1,10 +1,11 @@
-package br.com.rsicarelli.bitcoinapp
+package br.com.rsicarelli.bitcoinapp.features.radar
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import br.com.rsicarelli.bitcoinapp.R
 import br.com.rsicarelli.bitcoinapp.data.Bitcoin
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -15,7 +16,7 @@ class BitcoinHistoryAdapter : RecyclerView.Adapter<BitcoinHistoryAdapter.Bitcoin
 
   private val bitcoinHistory = arrayListOf<Bitcoin>()
 
-  fun addUsers(users: List<Bitcoin>) {
+  fun addHistory(users: List<Bitcoin>) {
     this.bitcoinHistory.addAll(users)
     notifyDataSetChanged()
   }
