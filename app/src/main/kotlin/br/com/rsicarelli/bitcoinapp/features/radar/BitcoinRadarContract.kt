@@ -12,6 +12,7 @@ interface BitcoinRadarContract {
 
   interface Presenter {
     fun onCreate(savedInstance: Bundle?)
+    fun onResume()
     fun onSaveInstanceState(outState: Bundle?)
     fun onDestroy()
   }

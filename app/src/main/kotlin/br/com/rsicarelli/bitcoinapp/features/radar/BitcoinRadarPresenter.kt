@@ -2,28 +2,45 @@ package br.com.rsicarelli.bitcoinapp.features.radar
 
 import android.os.Bundle
 import android.util.Log
-import br.com.rsicarelli.bitcoinapp.R.id.bitcoinDetailView
-import br.com.rsicarelli.bitcoinapp.R.id.recyclerView
-import br.com.rsicarelli.bitcoinapp.api.BitcoinApi
 import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.data.BitcoinRepository
 import br.com.rsicarelli.bitcoinapp.data.Currency
+import br.com.rsicarelli.bitcoinapp.data.DateRangeCreator
+import br.com.rsicarelli.bitcoinapp.di.module.SchedulersComposer
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_home.bitcoinDetailView
-import kotlinx.android.synthetic.main.activity_home.recyclerView
 import java.util.concurrent.TimeUnit
 
 class BitcoinRadarPresenter(
-    private val view: BitcoinRadarContract.View
+    private val view: BitcoinRadarContract.View,
+    private val bitcoinRepository: BitcoinRepository,
+    private val schedulersComposer: SchedulersComposer,
+    private val dateRangeCreator: DateRangeCreator
 ) : BitcoinRadarContract.Presenter {
   override fun onCreate(savedInstance: Bundle?) {
-    val create = BitcoinApi.create()
 
+    val dateRangeFromNow = dateRangeCreator.getDateRangeFromNow(-15)
+
+    bitcoinRepository.getPriceInterval(dateRangeFromNow.first, dateRangeFromNow.second)
+        .subscribeOn(schedulersComposer.executorScheduler())
+        .observeOn(schedulersComposer.mainThreadScheduler())
+        .flatMapObservable { Observable.fromIterable(it.bpi.entries) }
+        .map { (date, value) ->
+          Bitcoin(value = value, date = date, currency = Currency.USD)
+        }
+        .toList()
+        .subscribe({
+          view.bindHistory(it)
+          Log.e("BitcoinRadar", "Succcess -> $it")
+        }, {
+          Log.e("BitcoinRadar", it.message)
+        })
+  }
+
+  override fun onResume() {
     Observable.fromCallable<Any> {
-      create.getCurrentPrice()
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
+      bitcoinRepository.realtimeData()
+          .subscribeOn(schedulersComposer.executorScheduler())
+          .observeOn(schedulersComposer.mainThreadScheduler())
           .map {
             val usd = it.bpi.usd
             Bitcoin(
@@ -34,26 +51,13 @@ class BitcoinRadarPresenter(
           }.subscribe({
             view.bindRealtimeData(it)
           }, {
-            Log.e("memes", "memes")
+            Log.e("BitcoinRadar", it.message)
           })
     }.repeatWhen {
           it.concatMap<Any> {
             Observable.timer(1, TimeUnit.MINUTES)
           }
         }.subscribe()
-
-    create.getPriceInterval().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-        .flatMapObservable { Observable.fromIterable(it.bpi.entries) }
-        .map { (date, value) ->
-          Bitcoin(value = value, date = date, currency = Currency.USD)
-        }
-        .toList()
-        .subscribe({
-          view.bindHistory(it)
-          Log.d("memes", it.toString())
-        }, {
-          Log.e("memes", it.message)
-        })
   }
 
   override fun onSaveInstanceState(outState: Bundle?) {
