@@ -27,7 +27,9 @@ class BitcoinRadarPresenter(
         .map { (date, value) ->
           Bitcoin(value = value, date = date, currency = Currency.USD)
         }
-        .toList()
+        .toSortedList({ current, previous ->
+          previous.getDateTime().compareTo(current.getDateTime())
+        })
         .subscribe({
           view.bindHistory(it)
           Log.e("BitcoinRadar", "Succcess -> $it")
