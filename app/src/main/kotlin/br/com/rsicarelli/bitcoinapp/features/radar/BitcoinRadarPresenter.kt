@@ -20,10 +20,6 @@ class BitcoinRadarPresenter(
 
   private val disposable = CompositeDisposable()
 
-  operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
-    add(disposable)
-  }
-
   override fun onCreate(savedInstance: Bundle?) {
     getCachedData()
 
@@ -36,7 +32,6 @@ class BitcoinRadarPresenter(
         .observeOn(schedulersComposer.mainThreadScheduler())
         .subscribe({
           view.bindRealtimeData(it)
-          Log.d("BitconRadar", "Got cached data: $it")
         }, {
           Log.e("BitcoinRadar", it.message)
         })
@@ -57,7 +52,7 @@ class BitcoinRadarPresenter(
     disposable += bitcoinRepository.getPriceInterval(dateRangeFromNow.first, dateRangeFromNow.second)
         .subscribeOn(schedulersComposer.executorScheduler())
         .observeOn(schedulersComposer.mainThreadScheduler())
-        .flatMapObservable { Observable.fromIterable(it.bpi.entries) }
+        .flatMapObservable { Observable.fromIterable(it.history.entries) }
         .map { (date, value) ->
           Bitcoin(value = value, date = date)
         }
@@ -70,24 +65,13 @@ class BitcoinRadarPresenter(
         .subscribe()
   }
 
-
   override fun onResume() {
     disposable += bitcoinRepository.realtimeData()
         .subscribeOn(schedulersComposer.executorScheduler())
         .observeOn(schedulersComposer.mainThreadScheduler())
-        .map {
-          val usd = it.bpi.usd
-          Bitcoin(
-              value = usd.rate_float,
-              date = null
-          )
-        }
-        .doOnSuccess {
-          view.bindRealtimeData(it)
-        }.flatMapCompletable {
-          bitcoinRepository.saveLastRealtimeData(it)
-              .subscribeOn(schedulersComposer.executorScheduler())
-        }
+        .map { Bitcoin(value = it.lastBitcoinInfo.getPrice()) }
+        .doOnSuccess { view.bindRealtimeData(it) }
+        .flatMapCompletable { bitcoinRepository.saveLastRealtimeData(it) }
         .retryWhen { it.delay(5, TimeUnit.SECONDS) }
         .repeatWhen { it.delay(1, TimeUnit.MINUTES) }
         .doOnError { Log.e("BitcoinRadar", it.message) }
@@ -101,5 +85,9 @@ class BitcoinRadarPresenter(
 
   override fun onDestroy() {
     disposable.clear()
+  }
+
+  operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
+    add(disposable)
   }
 }

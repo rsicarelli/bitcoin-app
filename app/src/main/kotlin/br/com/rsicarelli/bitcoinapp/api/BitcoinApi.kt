@@ -2,6 +2,7 @@ package br.com.rsicarelli.bitcoinapp.api
 
 import br.com.rsicarelli.bitcoinapp.BuildConfig
 import br.com.rsicarelli.bitcoinapp.data.RealtimeBitcoinResponse
+import com.google.gson.annotations.SerializedName
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -50,5 +51,6 @@ interface BitcoinApi {
 }
 
 data class BitcoinHistoryResponse(
-    val bpi: Map<String, Double>
+    @SerializedName("bpi")
+    val history: Map<String, Double>
 )

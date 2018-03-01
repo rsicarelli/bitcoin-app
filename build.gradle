@@ -2,8 +2,8 @@
 
 buildscript {
   ext {
-    kotlinVersion = '1.2.21'
-    supportLibraryVersion = '27.0.2'
+    kotlinVersion = '1.2.30'
+    supportLibraryVersion = '27.1.0'
     constraintLayoutVersion = "1.0.2"
     retrofitVersion = '2.3.0'
     okHttpVersion = '3.6.0'

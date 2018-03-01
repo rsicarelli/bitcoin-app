@@ -52,11 +52,6 @@ dependencies {
   kapt "com.google.dagger:dagger-compiler:$daggerVersion"
   kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
-  // Room (use 1.1.0-alpha2 for latest alpha)
-  implementation "android.arch.persistence.room:runtime:1.0.0"
-  implementation "android.arch.persistence.room:rxjava2:1.0.0"
-  kapt "android.arch.persistence.room:compiler:1.0.0"
-
   implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
   implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
   implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
