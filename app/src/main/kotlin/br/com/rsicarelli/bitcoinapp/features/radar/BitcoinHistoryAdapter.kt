@@ -40,7 +40,6 @@ class BitcoinHistoryAdapter : RecyclerView.Adapter<BitcoinHistoryAdapter.Bitcoin
   ) : RecyclerView.ViewHolder(view) {
 
     private val value by lazy { view.findViewById<TextView>(R.id.price) }
-    private val currency by lazy { view.findViewById<TextView>(R.id.bitcoinCurrency) }
     private val date by lazy { view.findViewById<TextView>(R.id.bitcoinDate) }
 
     fun bind(bitcoin: Bitcoin) {

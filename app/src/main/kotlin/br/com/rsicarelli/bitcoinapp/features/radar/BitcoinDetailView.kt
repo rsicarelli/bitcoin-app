@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.View
 import br.com.rsicarelli.bitcoinapp.R
 import br.com.rsicarelli.bitcoinapp.data.Bitcoin
-import kotlinx.android.synthetic.main.view_bitcoin_detail.view.bitcoinCurrency
 import kotlinx.android.synthetic.main.view_bitcoin_detail.view.bitcoinDate
 import kotlinx.android.synthetic.main.view_bitcoin_detail.view.price
 import java.text.NumberFormat

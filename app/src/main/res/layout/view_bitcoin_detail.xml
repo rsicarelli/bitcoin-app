@@ -21,18 +21,6 @@
     tools:text="10,623" />
   
   <TextView
-    android:id="@+id/bitcoinCurrency"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="4dp"
-    android:layout_marginStart="4dp"
-    android:fontFamily="sans-serif-condensed"
-    android:text="USD"
-    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-    app:layout_constraintBottom_toBottomOf="@+id/price"
-    app:layout_constraintStart_toEndOf="@+id/price" />
-  
-  <TextView
     android:id="@+id/bitcoinDate"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -45,7 +33,7 @@
     android:visibility="gone"
     app:layout_constraintBottom_toBottomOf="@+id/price"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/currency"
+    app:layout_constraintStart_toEndOf="@+id/price"
     tools:text="02/24/2018"
     tools:visibility="visible" />
 

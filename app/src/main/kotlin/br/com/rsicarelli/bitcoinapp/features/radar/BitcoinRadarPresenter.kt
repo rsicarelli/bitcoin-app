@@ -52,6 +52,7 @@ class BitcoinRadarPresenter(
     disposable += bitcoinRepository.getPriceInterval(dateRangeFromNow.first, dateRangeFromNow.second)
         .subscribeOn(schedulersComposer.executorScheduler())
         .observeOn(schedulersComposer.mainThreadScheduler())
+        .retryWhen { it.delay(5, TimeUnit.SECONDS) }
         .flatMapObservable { Observable.fromIterable(it.history.entries) }
         .map { (date, value) ->
           Bitcoin(value = value, date = date)
@@ -70,7 +71,9 @@ class BitcoinRadarPresenter(
         .subscribeOn(schedulersComposer.executorScheduler())
         .observeOn(schedulersComposer.mainThreadScheduler())
         .map { Bitcoin(value = it.lastBitcoinInfo.getPrice()) }
-        .doOnSuccess { view.bindRealtimeData(it) }
+        .doOnSuccess {
+          view.bindRealtimeData(it)
+        }
         .flatMapCompletable { bitcoinRepository.saveLastRealtimeData(it) }
         .retryWhen { it.delay(5, TimeUnit.SECONDS) }
         .repeatWhen { it.delay(1, TimeUnit.MINUTES) }

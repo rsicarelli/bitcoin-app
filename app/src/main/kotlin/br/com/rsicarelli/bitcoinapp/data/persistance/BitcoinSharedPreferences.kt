@@ -23,14 +23,12 @@ class BitcoinSharedPreferences(
   fun getLastBitcoinData(): Single<Bitcoin> {
     return Single.create<Bitcoin> { emitter ->
       val lastBitcoinValue = sharedPreferences.getFloat(FIELD_RECENT_DATA, 0.0f)
-      emitter.onSuccess(Bitcoin(value = lastBitcoinValue.toDouble()))
+      if (lastBitcoinValue > 0) {
+        emitter.onSuccess(Bitcoin(value = lastBitcoinValue.toDouble()))
+      } else {
+        emitter.onError(Exception("No cached data available"))
+      }
     }
-  }
-
-  companion object {
-    const val FIELD_RECENT_DATA = "field_recent_data"
-    const val FIELD_HISTORY = "field_history"
-
   }
 
   fun saveBitcoinHistory(history: List<Bitcoin>): Completable {
@@ -49,9 +47,15 @@ class BitcoinSharedPreferences(
       try {
         emitter.onSuccess(bitcoinConverter.convertJsonToList(historyJson))
       } catch (exception: Exception) {
-        emitter.onError(Exception("No cached data"))
+        emitter.onError(Exception("No cached data available"))
       }
     }
+  }
+
+  companion object {
+    const val FIELD_RECENT_DATA = "field_recent_data"
+    const val FIELD_HISTORY = "field_history"
+
   }
 }
 
