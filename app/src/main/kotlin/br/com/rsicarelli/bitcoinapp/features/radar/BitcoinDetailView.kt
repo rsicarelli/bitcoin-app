@@ -28,7 +28,6 @@ class BitcoinDetailView @JvmOverloads constructor(
         bitcoinDate.visibility = View.VISIBLE
         bitcoinDate.text = it
       }
-      bitcoinCurrency.text = currency.name
     }
   }
 

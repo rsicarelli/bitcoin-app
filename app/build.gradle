@@ -12,6 +12,12 @@ android {
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments = ["room.schemaLocation":
+                         "$projectDir/schemas".toString()]
+      }
+    }
   }
   buildTypes {
     release {
@@ -45,6 +51,11 @@ dependencies {
   implementation "com.google.dagger:dagger-android-support:$daggerVersion"
   kapt "com.google.dagger:dagger-compiler:$daggerVersion"
   kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+  // Room (use 1.1.0-alpha2 for latest alpha)
+  implementation "android.arch.persistence.room:runtime:1.0.0"
+  implementation "android.arch.persistence.room:rxjava2:1.0.0"
+  kapt "android.arch.persistence.room:compiler:1.0.0"
 
   implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
   implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"

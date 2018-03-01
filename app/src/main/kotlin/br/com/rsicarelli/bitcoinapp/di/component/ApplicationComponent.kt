@@ -2,6 +2,7 @@ package br.com.rsicarelli.teamworkchallenge.di.component
 
 import br.com.rsicarelli.bitcoinapp.di.module.ActivityBuilderModule
 import br.com.rsicarelli.bitcoinapp.di.module.SchedulersModule
+import br.com.rsicarelli.bitcoinapp.global.ApplicationModule
 import br.com.rsicarelli.bitcoinapp.global.BitcoinRadarApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +15,8 @@ import javax.inject.Singleton
     modules = [
       (AndroidSupportInjectionModule::class),
       (ActivityBuilderModule::class),
-      (SchedulersModule::class)
+      (SchedulersModule::class),
+      (ApplicationModule::class)
     ]
 )
 interface ApplicationComponent : AndroidInjector<BitcoinRadarApplication> {

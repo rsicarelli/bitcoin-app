@@ -45,12 +45,12 @@ class BitcoinHistoryAdapter : RecyclerView.Adapter<BitcoinHistoryAdapter.Bitcoin
 
     fun bind(bitcoin: Bitcoin) {
       value.text = NumberFormat.getCurrencyInstance().format(bitcoin.value)
-      currency.text = bitcoin.currency.name
       date.text = bitcoin.date?.prettyDate()
       date.visibility = View.VISIBLE
     }
   }
 
+  // Não gostei muito disso :(
   fun String.prettyDate(): String {
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 

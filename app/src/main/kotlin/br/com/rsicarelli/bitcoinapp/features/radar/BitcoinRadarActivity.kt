@@ -21,6 +21,11 @@ class BitcoinRadarActivity : DaggerAppCompatActivity(),
     presenter.onCreate(savedInstanceState)
   }
 
+  override fun onResume() {
+    super.onResume()
+    presenter.onResume()
+  }
+
   override fun bindRealtimeData(bitcoin: Bitcoin) {
     bitcoinDetailView.bind(bitcoin)
   }
