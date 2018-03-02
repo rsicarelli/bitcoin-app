@@ -55,7 +55,6 @@ class BitcoinSharedPreferences(
   companion object {
     const val FIELD_RECENT_DATA = "field_recent_data"
     const val FIELD_HISTORY = "field_history"
-
   }
 }
 
