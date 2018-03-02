@@ -1,6 +1,5 @@
 package br.com.rsicarelli.bitcoinapp.features.radar
 
-import android.os.Bundle
 import br.com.rsicarelli.bitcoinapp.data.Bitcoin
 
 interface BitcoinRadarContract {
@@ -11,9 +10,9 @@ interface BitcoinRadarContract {
   }
 
   interface Presenter {
-    fun onCreate(savedInstance: Bundle?)
+    fun onCreate()
     fun onResume()
-    fun onSaveInstanceState(outState: Bundle?)
     fun onDestroy()
+    fun onPause()
   }
 }

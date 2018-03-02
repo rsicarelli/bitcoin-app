@@ -21,12 +21,22 @@ class BitcoinRadarActivity : DaggerAppCompatActivity(),
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_home)
 
-    presenter.onCreate(savedInstanceState)
+    presenter.onCreate()
   }
 
   override fun onResume() {
     super.onResume()
     presenter.onResume()
+  }
+
+  override fun onPause() {
+    super.onPause()
+    presenter.onPause()
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    presenter.onDestroy()
   }
 
   override fun bindRealtimeData(bitcoin: Bitcoin) {

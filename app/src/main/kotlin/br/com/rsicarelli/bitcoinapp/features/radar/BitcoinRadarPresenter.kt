@@ -1,6 +1,5 @@
 package br.com.rsicarelli.bitcoinapp.features.radar
 
-import android.os.Bundle
 import android.util.Log
 import br.com.rsicarelli.bitcoinapp.data.Bitcoin
 import br.com.rsicarelli.bitcoinapp.data.BitcoinRepository
@@ -20,7 +19,7 @@ class BitcoinRadarPresenter(
 
   private val disposable = CompositeDisposable()
 
-  override fun onCreate(savedInstance: Bundle?) {
+  override fun onCreate() {
     getCachedData()
 
     fetchBitcoinHistory()
@@ -82,11 +81,11 @@ class BitcoinRadarPresenter(
         .subscribe()
   }
 
-  override fun onSaveInstanceState(outState: Bundle?) {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  override fun onDestroy() {
+    disposable.clear()
   }
 
-  override fun onDestroy() {
+  override fun onPause() {
     disposable.clear()
   }
 
