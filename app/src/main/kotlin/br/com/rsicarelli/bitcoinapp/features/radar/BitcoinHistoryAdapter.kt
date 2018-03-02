@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import br.com.rsicarelli.bitcoinapp.R
 import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.extensions.prettyDate
+import br.com.rsicarelli.bitcoinapp.extensions.show
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class BitcoinHistoryAdapter : RecyclerView.Adapter<BitcoinHistoryAdapter.BitcoinViewHolder>() {
 
   private val bitcoinHistory = arrayListOf<Bitcoin>()
 
   fun addHistory(users: List<Bitcoin>) {
+    this.bitcoinHistory.clear()
     this.bitcoinHistory.addAll(users)
     notifyDataSetChanged()
   }
@@ -39,31 +39,16 @@ class BitcoinHistoryAdapter : RecyclerView.Adapter<BitcoinHistoryAdapter.Bitcoin
       private val view: View
   ) : RecyclerView.ViewHolder(view) {
 
-    private val value by lazy { view.findViewById<TextView>(R.id.price) }
-    private val date by lazy { view.findViewById<TextView>(R.id.bitcoinDate) }
-
     fun bind(bitcoin: Bitcoin) {
+      val value = view.findViewById<TextView>(R.id.price)
+      val date = view.findViewById<TextView>(R.id.bitcoinDate)
+
       value.text = NumberFormat.getCurrencyInstance().format(bitcoin.value)
-      date.text = bitcoin.date?.prettyDate()
-      date.visibility = View.VISIBLE
-    }
-  }
-
-  // Não gostei muito disso :(
-  fun String.prettyDate(): String {
-    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-
-    val date = simpleDateFormat.parse(this)
-
-    val calendar = Calendar.getInstance().apply {
-      time = date
-    }
-
-    with(calendar) {
-      val day = get(Calendar.DAY_OF_MONTH)
-      val month = getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
-
-      return "${month.toUpperCase()} $day"
+      bitcoin.date?.let {
+        date.text = it.prettyDate()
+        date.show()
+      }
     }
   }
 }
+
