@@ -1,4 +1,4 @@
-package br.com.rsicarelli.teamworkchallenge.di.component
+package br.com.rsicarelli.bitcoinapp.di.component
 
 import br.com.rsicarelli.bitcoinapp.di.module.ActivityBuilderModule
 import br.com.rsicarelli.bitcoinapp.di.module.SchedulersModule

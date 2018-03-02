@@ -1,6 +1,6 @@
 package br.com.rsicarelli.bitcoinapp.data.persistance
 
-import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.data.model.Bitcoin
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

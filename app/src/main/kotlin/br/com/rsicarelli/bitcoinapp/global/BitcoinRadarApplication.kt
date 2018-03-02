@@ -1,7 +1,7 @@
 package br.com.rsicarelli.bitcoinapp.global
 
-import br.com.rsicarelli.teamworkchallenge.di.component.ApplicationComponent
-import br.com.rsicarelli.teamworkchallenge.di.component.DaggerApplicationComponent
+import br.com.rsicarelli.bitcoinapp.di.component.ApplicationComponent
+import br.com.rsicarelli.bitcoinapp.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 

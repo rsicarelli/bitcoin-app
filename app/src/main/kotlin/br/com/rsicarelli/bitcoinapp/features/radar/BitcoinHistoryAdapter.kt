@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import br.com.rsicarelli.bitcoinapp.R
-import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.data.model.Bitcoin
 import br.com.rsicarelli.bitcoinapp.extensions.prettyDate
 import br.com.rsicarelli.bitcoinapp.extensions.show
 import java.text.NumberFormat

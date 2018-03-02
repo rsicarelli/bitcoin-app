@@ -5,7 +5,7 @@ import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
 import br.com.rsicarelli.bitcoinapp.R
-import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.data.model.Bitcoin
 import kotlinx.android.synthetic.main.view_bitcoin_detail.view.bitcoinDate
 import kotlinx.android.synthetic.main.view_bitcoin_detail.view.price
 import java.text.NumberFormat

@@ -2,7 +2,7 @@ package br.com.rsicarelli.bitcoinapp.features.radar
 
 import android.os.Bundle
 import br.com.rsicarelli.bitcoinapp.R
-import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.data.model.Bitcoin
 import br.com.rsicarelli.bitcoinapp.extensions.gone
 import br.com.rsicarelli.bitcoinapp.extensions.show
 import dagger.android.support.DaggerAppCompatActivity

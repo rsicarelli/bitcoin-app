@@ -1,7 +1,7 @@
 package br.com.rsicarelli.bitcoinapp.features.radar
 
 import android.util.Log
-import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.data.model.Bitcoin
 import br.com.rsicarelli.bitcoinapp.data.BitcoinRepository
 import br.com.rsicarelli.bitcoinapp.data.DateRangeCreator
 import br.com.rsicarelli.bitcoinapp.di.module.SchedulersComposer
@@ -69,7 +69,7 @@ class BitcoinRadarPresenter(
     disposable += bitcoinRepository.realtimeData()
         .subscribeOn(schedulersComposer.executorScheduler())
         .observeOn(schedulersComposer.mainThreadScheduler())
-        .map { Bitcoin(value = it.lastBitcoinInfo.getPrice()) }
+        .map { Bitcoin(value = it.historyInfo.getPrice()) }
         .doOnSuccess {
           view.bindRealtimeData(it)
         }

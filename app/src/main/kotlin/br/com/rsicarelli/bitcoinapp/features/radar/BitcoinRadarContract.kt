@@ -1,6 +1,6 @@
 package br.com.rsicarelli.bitcoinapp.features.radar
 
-import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.data.model.Bitcoin
 
 interface BitcoinRadarContract {
 

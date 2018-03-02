@@ -1,7 +1,7 @@
 package br.com.rsicarelli.bitcoinapp.data.persistance
 
 import android.content.SharedPreferences
-import br.com.rsicarelli.bitcoinapp.data.Bitcoin
+import br.com.rsicarelli.bitcoinapp.data.model.Bitcoin
 import io.reactivex.Completable
 import io.reactivex.Single
 import java.lang.Exception

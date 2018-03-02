@@ -1,4 +1,4 @@
-package br.com.rsicarelli.bitcoinapp.data
+package br.com.rsicarelli.bitcoinapp.data.model
 
 import java.text.SimpleDateFormat
 import java.util.Date
